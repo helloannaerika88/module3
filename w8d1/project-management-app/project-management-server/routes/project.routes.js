@@ -1,5 +1,4 @@
 const router = require("express").Router();
- 
 const mongoose = require('mongoose');
  
 const Project = require('../models/Project.model');
@@ -33,6 +32,7 @@ router.get('/projects/:projectId', (req, res) => {
       }
 
     Project.findById(projectId)
+          .populate('tasks')
         .then(project => res.json(project))
         .catch(err => console.log(err))
 })
